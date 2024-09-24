@@ -1,0 +1,17 @@
+﻿<Application x:Class="PlatformaTrim.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:PlatformaTrim"
+             xmlns:view ="clr-namespace:PlatformaTrim.Views"
+             xmlns:viewModel ="clr-namespace:PlatformaTrim.ViewModels"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <DataTemplate DataType="{x:Type viewModel:MainWindowViewModel}">
+            <local:MainWindow/>
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:UserDataViewModel}">
+            <view:UserDataView/>
+        </DataTemplate>
+    </Application.Resources>
+</Application>
