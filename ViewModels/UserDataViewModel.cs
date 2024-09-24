@@ -109,7 +109,7 @@ namespace PlatformaTrim.ViewModels
                 {
                     IsProcessed = true;
                     OnPropertyChange(nameof(IsProcessed));
-                    using DigitalSignatureConvertor convertor = new(new UserData
+                    using DigitalSignatureConverter convertor = new(new UserData
                     {
                         Fullname = Fullname,
                         NumberCertificate = Number,

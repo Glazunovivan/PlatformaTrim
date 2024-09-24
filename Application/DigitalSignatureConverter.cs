@@ -4,9 +4,9 @@ using System;
 
 namespace PlatformaTrim.DigitalSignature
 {
-    internal class DigitalSignatureConvertor : IDisposable
+    internal class DigitalSignatureConverter : IDisposable
     {
-        public DigitalSignatureConvertor(UserData userData, string filePath)
+        public DigitalSignatureConverter(UserData userData, string filePath)
         {
             _filePath = filePath;
 
@@ -110,7 +110,7 @@ namespace PlatformaTrim.DigitalSignature
                 var top = pageHeight - heightRectangle;
                 var right = left + widthText - _templateStamp.Margin;
 
-                //прямоугольник
+                //рамка
                 _gdpicturePDF.SetLineColor(0, 0, 0);
                 _gdpicturePDF.SetLineWidth(0.01f);
                 _gdpicturePDF.DrawRoundedRectangle(left - _templateStamp.Margin,
@@ -124,7 +124,6 @@ namespace PlatformaTrim.DigitalSignature
                 _gdpicturePDF.SetTextSize(_templateStamp.FontSize);
                 _gdpicturePDF.SetFillColor(0, 0, 0);
 
-                //title
                 _gdpicturePDF.DrawTextBox(_fontName,
                                          left + 0.2f,
                                          top,
@@ -135,8 +134,17 @@ namespace PlatformaTrim.DigitalSignature
                                          _templateStamp.Title
                                          );
 
-                //черный фон + белый текст
-                //gdpicturePDF.SetFillColor(0, 0, 0);
+                //черный прямоугольник
+                _gdpicturePDF.SetFillColor(0, 0, 0);
+                _gdpicturePDF.DrawRoundedRectangle(left,
+                                                   top + (heightText * 2),
+                                                   widthText - (_templateStamp.Margin * 2),
+                                                   heightText,
+                                                   0.0f,
+                                                   true,
+                                                   true);
+
+                _gdpicturePDF.SetFillColor(255, 255, 255);
                 _gdpicturePDF.DrawTextBox(_fontName,
                                          left,
                                          top + (heightText * 2),
@@ -146,6 +154,7 @@ namespace PlatformaTrim.DigitalSignature
                                          TextAlignment.TextAlignmentCenter,
                                          _templateStamp.Info);
 
+                _gdpicturePDF.SetFillColor(0, 0, 0);
                 _gdpicturePDF.DrawTextBox(_fontName,
                                          left,
                                          top + (heightText * 3),
